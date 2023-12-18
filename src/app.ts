@@ -19,7 +19,7 @@ app.use(morgan("dev"));
 // app.use(cors());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://todolist-fe.onrender.com"],
+    origin: "https://todolist-fe.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: [
       "Access-Control-Allow-Headers",
