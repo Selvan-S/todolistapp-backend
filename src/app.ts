@@ -11,10 +11,33 @@ import session from "express-session";
 import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
 import { requiresAuth } from "./controllers/middleware/auth";
+// import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
 app.use(morgan("dev"));
+
+// app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://todolist-fe.onrender.com"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: [
+      "Access-Control-Allow-Headers",
+      "Content-Type",
+      "Origin, X-Requested-With",
+      "Accept",
+      "Authorization",
+      "X-HTTP-Method-Override",
+      "Set-Cookie",
+      "Cookie",
+    ],
+    credentials: true,
+  })
+);
+
+// app.use(cors());
 app.use(express.json());
+// app.set("trust proxy", 1);
 
 app.use(
   session({
@@ -23,6 +46,9 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 60 * 60 * 1000,
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
     },
     rolling: true,
     store: MongoStore.create({
@@ -30,10 +56,23 @@ app.use(
     }),
   })
 );
-app.use(cors({ origin: "*" }));
+
+// app.use(cors());
+//   app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Credentials", "true");
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-HTTP-Method-Override"
+//   );
+//   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS");
+//   next();
+// });
 
 app.use("/api/v1/users", userRoutes);
+
 app.use("/api/v1/todos", requiresAuth, todoRoutes);
+
 app.use("/api/v1/tasks", taskRoutes);
 
 app.use((req, res, next) => {

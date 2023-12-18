@@ -7,7 +7,7 @@ router.get("/", TodoController.getTodos); // server end point
 
 router.get("/:todoId", TodoController.getTodo); // server end point
 
-router.post("/", TodoController.createTodo)
+router.post("/", TodoController.createTodo);
 
 router.put("/:todoId", TodoController.updateTodo);
 
