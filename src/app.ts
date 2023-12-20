@@ -52,6 +52,7 @@ app.use(
       maxAge: 60 * 60 * 1000,
       httpOnly: true,
       sameSite: "none",
+      secure: true,
     },
     rolling: true,
     store: MongoStore.create({
@@ -59,7 +60,6 @@ app.use(
     }),
   })
 );
-
 
 app.use("/api/v1/users", userRoutes);
 
