@@ -20,7 +20,7 @@ app.use(morgan("dev"));
 app.use(
   cors({
     origin: [
-      "https://2dolist-app.netlify.app",
+      "https://2dolist-app.netlify.app/",
       "https://todolist-fe.onrender.com",
       "http://localhost:3000",
     ],
