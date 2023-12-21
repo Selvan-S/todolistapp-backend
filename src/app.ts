@@ -32,7 +32,7 @@ app.use(
 
 // app.use(cors());
 app.use(express.json());
-// app.set("trust proxy", 1);
+app.set("trust proxy", 1);
 
 app.use(
   session({
@@ -41,7 +41,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 60 * 60 * 1000,
-
+      sameSite: "none",
+      secure: true,
     },
     rolling: true,
     store: MongoStore.create({
