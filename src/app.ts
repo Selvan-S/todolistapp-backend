@@ -25,15 +25,7 @@ app.use(
       "http://localhost:3000",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: [
-      "Content-Type",
-      "Origin, X-Requested-With",
-      "Accept",
-      "Authorization",
-      "X-HTTP-Method-Override",
-      "Set-Cookie",
-      "Cookie",
-    ],
+
     credentials: true,
   })
 );
