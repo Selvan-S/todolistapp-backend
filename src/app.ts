@@ -26,8 +26,10 @@ app.use(
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: [
-      "Access-Control-Allow-Headers",
-      "Content-Type",
+      "Access-Control-Allow-Headers: Content-Type, *",
+      "Access-Control-Allow-Credentials: true",
+      "Access-Control-Allow-Origin: https://2dolist-app.netlify.app",
+      "Access-Control-Allow-Methods: GET, POST, PUT, DELETE",
       "Origin, X-Requested-With",
       "Accept",
       "Authorization",
@@ -52,7 +54,7 @@ app.use(
       maxAge: 60 * 60 * 1000,
       httpOnly: true,
       sameSite: "none",
-      secure: "auto",
+      secure: true,
     },
     rolling: true,
     store: MongoStore.create({
