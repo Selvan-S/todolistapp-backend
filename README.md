@@ -42,7 +42,7 @@ Step 7: Use the below API endpoints for `Todo` and Base URL is `http://localhost
 Step 8: Use the below API endpoints for `Task` and Base URL is `http://localhost:<PORT>/api/v1/tasks`:
 ```
 "/" -  Get Todos for specific user (GET).
-"/:todoId" - Get specific Task (GET)
+"/:taskId" - Get specific Task (GET)
 "/" - Create new Todo (POST). eg., {"todo_id": <Specific Todo _id>, task: <your description>}
 "/" - Update Todo (PUT).
 "/" - Delete Task (Delete)
